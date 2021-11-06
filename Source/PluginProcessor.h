@@ -130,44 +130,13 @@ private:
             {
                 update<0>(lowCut, cutCoefficients);
             }
-        //case Slope_12:
-            //{
-            //    *lowCut.get<0>().coefficients = *cutCoefficients[0];
-            //    lowCut.setBypassed<0>(false);
-            //    break;
-            //}
-            //case Slope_24:
-            //{
-            //    *lowCut.get<0>().coefficients = *cutCoefficients[0];
-            //    lowCut.setBypassed<0>(false);
-            //    *lowCut.get<1>().coefficients = *cutCoefficients[1];
-            //    lowCut.setBypassed<1>(false);
-            //    break;
-            //}
-            //case Slope_36:
-            //{
-            //    *lowCut.get<0>().coefficients = *cutCoefficients[0];
-            //    lowCut.setBypassed<0>(false);
-            //    *lowCut.get<1>().coefficients = *cutCoefficients[1];
-            //    lowCut.setBypassed<1>(false);
-            //    *lowCut.get<2>().coefficients = *cutCoefficients[2];
-            //    lowCut.setBypassed<2>(false);
-            //    break;
-            //}
-            //case Slope_48:
-            //{
-            //    *lowCut.get<0>().coefficients = *cutCoefficients[0];
-            //    lowCut.setBypassed<0>(false);
-            //    *lowCut.get<1>().coefficients = *cutCoefficients[1];
-            //    lowCut.setBypassed<1>(false);
-            //    *lowCut.get<2>().coefficients = *cutCoefficients[2];
-            //    lowCut.setBypassed<2>(false);
-            //    *lowCut.get<3>().coefficients = *cutCoefficients[3];
-            //    lowCut.setBypassed<3>(false);
-            //    break;
-            //}
         }
     }
+
+    void updateLowCutFilters(const ChainSettings& chainSettings);
+    void updateHighCutFilters(const ChainSettings& chainSettings);
+
+    void updateFilters();
 
     //==============================================================================
     JUCE_DECLARE_NON_COPYABLE_WITH_LEAK_DETECTOR (SimpleEQAudioProcessor)
