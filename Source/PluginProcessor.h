@@ -22,7 +22,7 @@ struct ChainSettings
 {
     float peakFreq{ 0 }, peakGainInDecibels{ 0 }, peakQuality{ 1.f };
     float lowCutFreq{ 0 }, highCutFreq{ 0 };
-    int lowCutSlope{ Slope::Slope_12 }, highCutSlope{ Slope::Slope_12 };
+    Slope lowCutSlope{ Slope::Slope_12 }, highCutSlope{ Slope::Slope_12 };
 };
 
 
@@ -102,33 +102,33 @@ private:
     }
 
     template <typename ChainType, typename CoefficientType>
-    void updateCutFilter(ChainType& lowCut,
-        const CoefficientType& cutCoefficients,
-        const ChainSettings& chainSettings)
+    void updateCutFilter(ChainType& chain,
+        const CoefficientType& coefficients,
+        const Slope& slope)
     {
 
-        lowCut.setBypassed<0>(true);
-        lowCut.setBypassed<1>(true);
-        lowCut.setBypassed<2>(true);
-        lowCut.setBypassed<3>(true);
+        chain.setBypassed<0>(true);
+        chain.setBypassed<1>(true);
+        chain.setBypassed<2>(true);
+        chain.setBypassed<3>(true);
 
-        switch (chainSettings.lowCutSlope)
+        switch (slope)
         {
             case Slope_48:
             {
-                update<3>(lowCut, cutCoefficients);
+                update<3>(chain, coefficients);
             }
             case Slope_36:
             {
-                update<2>(lowCut, cutCoefficients);
+                update<2>(chain, coefficients);
             }
             case Slope_24:
             {
-                update<1>(lowCut, cutCoefficients);
+                update<1>(chain, coefficients);
             }
             case Slope_12:
             {
-                update<0>(lowCut, cutCoefficients);
+                update<0>(chain, coefficients);
             }
         }
     }
